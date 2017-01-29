@@ -1,12 +1,11 @@
 # Price Formatter
 
-Скрипт форматирует входное числовое значение и выводит в удобном для восприятии виде.
+Script format input data and output in comfortable view.
 
-Пример использования скрипта:
-
+##Example of using script:
     python3 format_price.py --price 987654321.012312
 
-Результат рабоыт скрипта:
+##Result:
     
     987 6543 321.01
 
