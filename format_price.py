@@ -4,22 +4,22 @@ import locale
 
 
 def format_price(input_price):
+    loc = locale.getlocale()
     try:
-        loc = locale.getlocale()
         locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
-
         price = str(input_price).replace(',', '.')
-
         price = float(price)
-        price = locale.currency(price, grouping=True)
-        price = re.sub(r'\.00$', '', price)
-        price = price.replace('$', '')
-        price = price.replace(',', ' ')
+        group_price = locale.currency(price, grouping=True)
+        without_sent = re.sub(r'\.00$', '', group_price)
+        without_dollar = without_sent.replace('$', '')
+        pretty_view = without_dollar.replace(',', ' ')
         locale.setlocale(locale.LC_ALL, loc)
-        return price
+        return pretty_view
     except ValueError:
-        print ('Please, input number!')
-
+        return 0
+    finally:
+        locale.setlocale(locale.LC_ALL, loc)
+        
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
